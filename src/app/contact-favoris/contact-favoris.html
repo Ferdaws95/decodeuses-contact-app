@@ -1,0 +1,27 @@
+<h1 class="contact-title">❤️ Liste des favoris ❤️</h1>
+  <div style="display: flex ;margin: 30px auto;gap:50px; align-content: center;width:100%;max-width: 500px;">
+    <input
+      type="text"
+      placeholder="🔍 Rechercher un contact..."
+      [(ngModel)]="searchTerm" (input)="onSearch()"
+    class="search-input"/>
+  </div>
+
+<div class="flex flex-col h-full">
+  <div class="flex-1">
+   <mat-list role="list">
+    @for (contact of favoriteContacts; track contact.id) {
+       <div style="display: flex ;margin: 30px auto;gap:50px; align-content: center;width:100%;max-width: 500px;">
+
+          <mat-list-item role="listitem" class="contact-item">
+          <span [routerLink]="['/contact-detail', contact.id]" class="contact-link">
+            {{ contact.prenom }} {{ contact.nom }} <br><a href="mailto:{{ contact.email }}" class="email">{{ contact.email }}</a>
+
+          </span>
+          <mat-divider></mat-divider>
+       </mat-list-item>
+            </div>
+    }
+   </mat-list>
+</div>
+</div>

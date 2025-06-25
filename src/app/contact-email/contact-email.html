@@ -1,0 +1,23 @@
+<mat-card class="email-card">
+  <form (ngSubmit)="onSubmit()" #emailForm="ngForm" class="email-form">
+    <div class="email-to">
+      <strong>À :</strong> {{ contact.email }}
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Envoyer un email</mat-label>
+      <textarea
+        matInput
+        name="message"
+        [(ngModel)]="emailMessage"
+        placeholder="Tapez votre message ici"
+        required
+        rows="5">
+      </textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!emailForm.valid">
+      Envoyer
+    </button>
+  </form>
+</mat-card>

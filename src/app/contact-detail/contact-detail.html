@@ -1,0 +1,67 @@
+
+@if(formGroup!=null) {
+ <mat-card>
+    <mat-card-header class="w-60">
+
+      <mat-card-title>Edit-Contact</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="mt-5" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="flex items-center space-x-2">
+  <!-- Avatar rond avec image ou par défaut -->
+    <div class="w-24 h-24 mb-5 rounded-full overflow-hidden border-2 border-gray-300">
+      <img [src]="imagePreview || 'assets/avatar.png'" alt="Photo de profil" class="w-full h-full object-cover">
+    </div>
+
+
+  <!-- Bouton pour télécharger une image -->
+  <div>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      📷 Télécharger une photo
+    </button>
+    <input type="file" accept="image/*" #fileInput hidden (change)="onImageSelected($event)">
+  </div>
+</div>
+
+        <div>
+          <mat-form-field class="w-60">
+            <mat-label>👤 Nom:</mat-label>
+            <input matInput formControlName="nom">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-60">
+            <mat-label>👤 Prénom:</mat-label>
+            <input matInput formControlName="prenom">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-60">
+            <mat-label>Date de naissance:</mat-label>
+            <input matInput formControlName="dueDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-60">
+            <mat-label>📧 Email:</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="exemple@domaine.com">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-60">
+            <mat-label>📞 Numéro:</mat-label>
+            <input matInput formControlName="number" type="tel" placeholder="+33 07 3646 1848">
+          </mat-form-field>
+        </div>
+        <mat-checkbox formControlName="completed">Completed</mat-checkbox>
+        <div class="example-button-row">
+          <button mat-raised-button type="submit">Save</button>
+          <button mat-button type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+ }

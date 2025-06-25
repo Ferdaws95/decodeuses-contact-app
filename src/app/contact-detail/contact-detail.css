@@ -1,0 +1,82 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+mat-card {
+  width: 100%;
+  max-width:500px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+
+mat-card-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+mat-label {
+  font-weight: 500;
+}
+
+input, mat-datepicker-toggle {
+  font-size: 1rem;
+}
+
+.example-button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button[mat-raised-button] {
+  background-color: #3f51b5;
+  color: white;
+}
+
+button[mat-button] {
+  color: #f44336;
+}
+
+@media (max-width: 600px) {
+  mat-card {
+    padding: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.4rem;
+  }
+}
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #ccc;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
