@@ -1,7 +1,26 @@
-<h1> Gestion de contacts avec recherche dynamique et actions contextuelles sur liste. </h1>Add commentMore actions
-<h2>Notions utilisées :</h2>
-  <p>
-    <strong>  Angular : </strong>formulaire, services CRUD, http, models, modules, routage
-    <strong>Angular Material :</strong> menu contextuel, liste
-    <strong>Tailwind CSS :</strong> flex
+<div class="dashboard-container">
+  <h1 class="welcome-title">👋 Bienvenue dans ContactApp !</h1>
+  <p class="description">
+    Gérez facilement vos contacts personnels et professionnels grâce à une interface moderne et intuitive.
   </p>
+
+  <div class="features">
+    <h2>🚀 Fonctionnalités principales</h2>
+    <ul>
+      <li>🔍 Recherche dynamique par nom, prénom ou email</li>
+      <li>➕ Ajout, modification et suppression de contacts</li>
+      <li>📧 Envoi d’email directement depuis l’interface</li>
+      <li>❤️ Gestion des favoris</li>
+    </ul>
+  </div>
+
+  <div class="cta-buttons">
+    <button mat-raised-button color="primary" [routerLink]="['/contact-list']">
+      Voir la liste des contacts
+    </button>
+    <button mat-stroked-button color="accent" [routerLink]="['/contact-detail', 'new']">
+      Ajouter un nouveau contact
+    </button>
+  </div>
+
+</div>

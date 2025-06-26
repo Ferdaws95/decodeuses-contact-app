@@ -1,140 +1,132 @@
 /* Titre principal */
 .contact-title {
   text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 24px 0;
   color: #2e3a59;
   font-family: 'Segoe UI', sans-serif;
 }
-/* Conteneur général */
-.flex.flex-col.h-full {
-  background-color: #f5f7fa; /* fond clair, tu peux changer la couleur */
-  padding: 16px;
-  border-radius: 8px;
-  max-width: 600px; /* largeur max pour pas que ce soit trop large */
+
+/* Conteneur global */
+.contact-container {
+  background-color: #f9fbfd;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 700px;
   margin: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Liste style "tableau" */
-mat-list {
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Chaque item ressemble à une ligne de tableau */
-mat-list-item {
+/* Contrôles en haut (recherche + boutons) */
+.contact-controls {
   display: flex;
-  padding: 12px 20px;
-  border-bottom: 1px solid #e0e0e0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-/* Hover sur chaque ligne */
-mat-list-item:hover {
-  background-color: #e3f2fd;
-}
-
-/* Pour que le texte prenne toute la place possible */
-mat-list-item span {
-  flex: 1;
-  font-weight: 500;
-  color: #333;
-  text-decoration: none; /* pas de soulignement */
-}
-
-/* Dernière ligne sans bordure */
-mat-list-item:last-child {
-  border-bottom: none;
-}
-
-/* Style du total */
-.contact-total {
-  margin-top: 12px;
-  font-weight: bold;
-  text-align: right;
-  color: #555;
-}
-
+/* Champ de recherche */
 .search-input {
-  display: block;
-  width: 80%;
+  flex: 1;
+  min-width: 200px;
   max-width: 400px;
-  margin: 0 auto 2rem;
-  padding: 0.75rem 1rem;
+  padding: 10px 16px;
   font-size: 1rem;
   border: 2px solid #ccc;
   border-radius: 8px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s;
 }
 
 .search-input:focus {
-  outline: none;
   border-color: #3f51b5;
-}
- button {
-  display: block;
-  width: 100%;
-
-  margin: 0 auto 2rem;
-  padding: 0.75rem ;
-  font-size: 1rem;
-
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-}
-
-button:focus {
   outline: none;
-  border-color: #3f51b5;
 }
 
-#menu-item{width:200px}
-.contact-letter {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2c3e50;
-  background-color: #b8cedd4b;
-  padding: 8px 16px;
-  border-radius: 8px;
-  margin: 20px 0 10px 0;
-  width: fit-content;
-  user-select: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* Boutons d'icônes */
+.icon-button,
+.favorites-btn,
+.menu-button {
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
-.email {
-  font-size: 0.85rem;       /* Taille plus petite */
-  color: gray;              /* Couleur grise */
-  text-decoration: none;    /* Enlève le soulignement */
-}
-
-
-
-.contact-title {
-  font-size: 2rem;
-  margin: 0;
-}
-
 
 .favorites-btn {
-  display: flex;
-  align-items: center; /* corrige 'end' en 'center' pour alignement vertical */
-  gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid #ddd;
+  background-color: #fff0f3;
+  color: red;
   border-radius: 8px;
-  background-color: #fff;
-  transition: background 0.3s;
+  width: auto;
+  padding: 8px 12px;
 }
 
 .favorites-btn:hover {
-  background-color: #fce4ec;
+  background-color: #fdeef4;
 }
 
-.icon {
-  color: red;
+/* Ligne de contact */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Image de profil */
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Étiquette alphabétique */
+.contact-letter {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  background-color: #e1f5fe;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+/* Info de contact */
+.contact-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.email {
+  font-size: 0.85rem;
+  color: gray;
+  text-decoration: none;
+}
+
+/* Total des contacts */
+.contact-total {
+  margin-top: 16px;
+  font-weight: bold;
+  text-align: right;
+  color: #555;
 }

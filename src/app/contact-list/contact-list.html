@@ -1,78 +1,76 @@
-
 <h1 class="contact-title">📇 Liste des contacts</h1>
 
-  <div style="display: flex ;margin: 30px auto;gap:50px; align-content: center;width:100%;max-width: 500px;">
-    <input
-      type="text"
-      placeholder="🔍 Rechercher un contact..."
-      [(ngModel)]="searchTerm" (input)="onSearch()"
-    class="search-input"/>
-    <button mat-icon-button (click)="onAddContact()" style="border: 2px solid #ccc;  max-width: 50px;"> <mat-icon>person_add</mat-icon> </button>
-    <button mat-icon-button class="favorites-btn "  style="max-width: 60px;" [routerLink]="['/contact-favoris']" ><mat-icon class="icon">favorite</mat-icon>
+<!-- Barre de recherche et boutons -->
+<div class="contact-controls">
+  <input
+    type="text"
+    placeholder="🔍 Rechercher un contact..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+    class="search-input"
+  />
+
+  <button mat-icon-button (click)="onAddContact()" class="icon-button">
+    <mat-icon>person_add</mat-icon>
   </button>
-  </div>
 
+  <button mat-icon-button [routerLink]="['/contact-favoris']" class="favorites-btn">
+    <mat-icon class="icon">favorite</mat-icon>
+  </button>
+</div>
 
+<!-- Liste des contacts -->
+<div class="contact-container">
+  <mat-list role="list">
+    @for (letter of getKeys(filteredContactsGrouped()).sort(); track letter) {
+      <h3 class="contact-letter">{{ letter }}</h3>
 
-<div class="flex flex-col h-full">
-  <div class="flex-1">
-   <mat-list role="list">
-@for (letter of getKeys(filteredContactsGrouped()).sort(); track letter) { <h3 class="contact-letter ">{{ letter }}</h3>  <!--getKeys(...) récupère les lettres   // .sort() pour les trier alphabétiquement.-->
-    @for (contact of filteredContactsGrouped()[letter]; track contact.id) {  <!--filteredContactsGrouped()[letter] : tableau de contacts pour cette lettre.-->
-      <div style="display: flex ;margin: 30px auto;gap:50px; align-content: center;width:100%;max-width: 500px;">
-          <div class="w-15 h-10 mb-1 rounded-full overflow-hidden border-2 border-gray-300">
-            <img [src]="contact.imagePreview" alt="Photo de profil" class="w-full h-full object-cover">
-          </div><mat-list-item role="listitem" class="contact-item">
+      @for (contact of filteredContactsGrouped()[letter]; track contact.id) {
+        <div class="contact-row">
+          <!-- Image de profil -->
+          <div class="profile-picture">
+            <img [src]="contact.imagePreview" alt="Photo de profil" />
+          </div>
 
-          <span [routerLink]="['/contact-detail', contact.id]" class="contact-link">
-            {{ contact.prenom }} {{ contact.nom }} <br><a href="mailto:{{ contact.email }}" class="email">{{ contact.email }}</a>
+          <!-- Infos contact -->
+          <mat-list-item role="listitem" class="contact-item">
+            <span [routerLink]="['/contact-detail', contact.id]" class="contact-link">
+              {{ contact.prenom }} {{ contact.nom }}<br />
+              <a href="mailto:{{ contact.email }}" class="email">{{ contact.email }}</a>
+            </span>
+            <mat-divider></mat-divider>
+          </mat-list-item>
 
-          </span>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-        <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" style="border: 2px solid #ccc;  max-width: 50px;border-radius: 100px;padding:0 ; background-color: #b8cedd;" >
-          <mat-icon>more_horiz</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" style="width:200px;">
-            <button mat-menu-item class="menu-item">
-              <mat-icon class="icon"style="color:rgb(27, 3, 123)">edit</mat-icon>
-              <span [routerLink]="['/contact-detail', contact.id]" class="contact-link" >Editer</span>
+          <!-- Menu d'actions -->
+          <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" class="menu-button">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/contact-detail', contact.id]">
+              <mat-icon>edit</mat-icon>
+              <span>Éditer</span>
             </button>
 
-            <button mat-menu-item class="menu-item" (click)="onDelete(contact.id)">
-              <mat-icon class="icon" style="color:rgb(27, 3, 123)" >delete</mat-icon>
+            <button mat-menu-item (click)="onDelete(contact.id)">
+              <mat-icon>delete</mat-icon>
               <span>Supprimer</span>
             </button>
-<!--          *****     Methode 1        *****                                                                          -->
 
-            <button mat-menu-item class="menu-item" [routerLink]="['/contact-email', contact.id]">
-              <mat-icon class="icon" style="color:rgb(27, 3, 123)"> email</mat-icon>
+            <button mat-menu-item [routerLink]="['/contact-email', contact.id]">
+              <mat-icon>email</mat-icon>
               <span>Envoyer Email</span>
             </button>
 
-<!--               *****  Méthode 2    *****
-
-            <button mat-menu-item class="menu-item" (click)="sendEmail(contact)" style="cursor: pointer;">
-                   {{ contact.id.email }}
-              <mat-icon class="icon" style="color:rgb(27, 3, 123)"> email</mat-icon>
-              <span>Envoyer Email</span>
+            <button mat-menu-item (click)="onFavoriteContact(contact)">
+              <mat-icon class="icon">favorite</mat-icon>
+              <span>Ajouter aux favoris</span>
             </button>
--->
-         <button mat-menu-item class="menu-item" (click)="onFavoriteContact(contact)">
-          <mat-icon class="icon" style="color:red">favorite</mat-icon>
-          <span>Ajouter aux favoris</span>
-        </button>
-
-
-        </mat-menu>
-      </div>
+          </mat-menu>
+        </div>
+      }
     }
-  }
-</mat-list>
+  </mat-list>
 
-  </div>
-
-  <p class="contact-total">
-    Nombre de contacts : {{ filteredContacts().length }}
-  </p>
+  <p class="contact-total">Nombre de contacts : {{ filteredContacts().length }}</p>
 </div>
